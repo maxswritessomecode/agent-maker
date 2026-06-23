@@ -23,18 +23,22 @@ BLOCKED_WORKFLOW_HINTS = {
 RAW_BLOCKED_TEXT_TERMS = {
     "background check",
     "candidate evaluation",
+    "candidate ranking",
     "compensation review",
     "customer eligibility",
     "employee monitoring",
     "financial advice",
     "health diagnosis",
     "hiring decision",
+    "interview debrief",
     "legal advice",
     "medical advice",
+    "new hire onboarding",
     "performance calibration",
     "performance review",
     "promotion decision",
     "regulated data",
+    "resume screening",
     "termination decision",
 }
 BLOCKED_TEXT_TERMS = {re.sub(r"[^a-z0-9]+", " ", term).strip() for term in RAW_BLOCKED_TEXT_TERMS}
@@ -64,6 +68,31 @@ ROLE_TEMPLATES = {
         "name": "Decision Memo Partner",
         "mission": "Synthesize approved discussions and documents into decision-prep memos with caveats and evidence.",
         "actions": ["summarize decision context", "compare options", "draft decision memos", "list assumptions and unresolved questions"],
+    },
+    "sales": {
+        "name": "Account Briefing Assistant",
+        "mission": "Prepare account, lead, and call briefs from approved CRM, email, meeting, and company research context.",
+        "actions": ["draft account briefs", "summarize approved customer context", "prepare call prep notes", "list follow-up questions"],
+    },
+    "support": {
+        "name": "Support Triage Assistant",
+        "mission": "Summarize support requests, draft responses, and group customer issues for human review.",
+        "actions": ["classify support requests", "draft response options", "summarize escalations", "prepare handoff notes"],
+    },
+    "content": {
+        "name": "Content Repurposing Assistant",
+        "mission": "Turn approved source material into draft posts, newsletters, briefs, and content outlines.",
+        "actions": ["summarize source material", "draft platform-specific content", "extract reusable points", "prepare editorial review notes"],
+    },
+    "release": {
+        "name": "Release Notes Assistant",
+        "mission": "Turn approved issue, PR, changelog, and ticket context into draft release notes and stakeholder summaries.",
+        "actions": ["summarize merged work", "draft release notes", "group changes by audience", "highlight risks and follow-ups"],
+    },
+    "research": {
+        "name": "Research Briefing Assistant",
+        "mission": "Compile approved research signals into concise briefs with sources, caveats, and next questions.",
+        "actions": ["summarize research sources", "compare findings", "draft briefing notes", "list assumptions and evidence gaps"],
     },
     "default": {
         "name": "Work Pattern Assistant",
@@ -112,10 +141,20 @@ def classify_pattern(activity: Activity) -> str:
         return "blocked"
     if {"meeting", "calendar", "transcript", "minutes"} & hints or "meeting" in text:
         return "meeting"
-    if {"email", "inbox"} & hints or activity.object_type == "email":
-        return "email"
     if {"status", "report", "weekly-update"} & hints or "status" in text:
         return "status"
+    if {"sales", "crm", "lead", "account", "prospect", "outreach", "customer-call"} & hints or any(term in text for term in ("sales", "crm", "lead", "account brief", "prospect", "outreach")):
+        return "sales"
+    if {"support", "customer-success", "escalation", "helpdesk", "zendesk"} & hints or any(term in text for term in ("support", "customer success", "escalation", "helpdesk", "zendesk")):
+        return "support"
+    if {"release", "changelog", "pull-request", "pr", "merge-request"} & hints or any(term in text for term in ("release note", "changelog", "pull request", "merge request")):
+        return "release"
+    if {"content", "marketing", "social", "newsletter", "seo", "blog", "article"} & hints or any(term in text for term in ("content", "marketing", "social post", "newsletter", "seo", "blog", "article")):
+        return "content"
+    if {"research", "competitor", "market", "company-research", "news"} & hints or any(term in text for term in ("research", "competitor", "market", "company research", "news tracker")):
+        return "research"
+    if {"email", "inbox"} & hints or activity.object_type == "email":
+        return "email"
     if {"project", "task", "ticket", "open-loop"} & hints or activity.object_type in {"ticket", "task"}:
         return "project"
     if {"decision", "memo", "strategy"} & hints or "decision" in text:

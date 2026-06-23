@@ -40,6 +40,16 @@ Likely agents:
 - Escalation Summary Assistant
 - Follow-up Drafting Assistant
 
+## Sales Or Customer-Facing Founder
+
+Pattern: account prep, lead research, customer emails, CRM updates, call notes, and follow-up drafts.
+
+Likely agents:
+
+- Account Briefing Assistant
+- Sales Follow-up Drafting Assistant
+- Research Briefing Assistant
+
 ## Engineering Lead
 
 Pattern: tickets, PRs, release notes, incidents, project updates, and planning docs.
@@ -50,3 +60,22 @@ Likely agents:
 - Project Status Assistant
 - Incident Follow-up Assistant
 
+## Marketing Or Content Lead
+
+Pattern: source docs, webinars, transcripts, social drafts, newsletters, SEO notes, and campaign updates.
+
+Likely agents:
+
+- Content Repurposing Assistant
+- Research Briefing Assistant
+- Campaign Status Assistant
+
+## Operations Or Executive Assistant
+
+Pattern: calendar density, inbox requests, task intake, travel/admin requests, and follow-up loops.
+
+Likely agents:
+
+- Inbox Triage Partner
+- Calendar Focus Planner
+- Project Intake Assistant

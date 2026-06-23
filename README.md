@@ -69,6 +69,7 @@ You can understand the product before installing anything:
 - [Sample scaffold spec](examples/sample-scaffold-spec.json)
 - [Generated demo output](examples/outputs/demo/index.md)
 - [Full walkthrough](docs/demo.md)
+- [Agent pattern library](docs/agent-pattern-library.md)
 
 The generated demo output is intentionally committed as a source fixture so visitors can inspect realistic proposals without running the CLI.
 
@@ -221,6 +222,7 @@ tests/                    CLI and generator regression tests
 - review checklist for approving, editing, or rejecting recommendations
 - anonymized Microsoft 365 and Google Workspace metadata examples
 - one complete proposal-to-installed-agent walkthrough
+- deeper public-template reverse engineering for common roles and source signals
 
 ## Contributing
 

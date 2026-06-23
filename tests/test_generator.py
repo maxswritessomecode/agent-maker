@@ -190,6 +190,62 @@ class ProposalGenerationTests(unittest.TestCase):
 
                 self.assertEqual(proposals, [])
 
+    def test_generates_sales_support_content_and_release_patterns(self):
+        sources = [
+            Source("crm", "CRM", "crm", "connected", True, True, work_relevance=0.9, signal_density=0.9),
+            Source("support", "Support", "support", "connected", True, True, work_relevance=0.9, signal_density=0.9),
+            Source("docs", "Docs", "docs", "connected", True, True, work_relevance=0.9, signal_density=0.9),
+            Source("github", "GitHub", "code", "connected", True, True, work_relevance=0.9, signal_density=0.9),
+        ]
+        cases = [
+            (
+                Activity("a1", "crm", "user", "2026-06-20", "reviewed", "record", "Account call prep", "Prepared account brief.", ("sales", "crm")),
+                "Account Briefing Assistant",
+            ),
+            (
+                Activity("a2", "support", "user", "2026-06-20", "triaged", "ticket", "Escalation summary", "Grouped support escalation notes.", ("support", "escalation")),
+                "Support Triage Assistant",
+            ),
+            (
+                Activity("a3", "docs", "user", "2026-06-20", "drafted", "doc", "Newsletter outline", "Repurposed article into newsletter.", ("content", "newsletter")),
+                "Content Repurposing Assistant",
+            ),
+            (
+                Activity("a4", "github", "user", "2026-06-20", "reviewed", "pull_request", "Release notes", "Grouped merged work for release notes.", ("release", "pull-request")),
+                "Release Notes Assistant",
+            ),
+        ]
+
+        for activity, agent_name in cases:
+            with self.subTest(agent_name=agent_name):
+                proposals = generate_proposals(sources, [activity])
+
+                self.assertEqual(proposals[0].agent_name, agent_name)
+
+    def test_blocks_public_marketplace_hr_agent_patterns(self):
+        sources = [
+            Source("work", "Work", "docs", "connected", True, True, work_relevance=0.9, signal_density=0.9)
+        ]
+        for label in ("Resume screening agent", "Candidate ranking system", "Interview debrief collector", "New hire onboarding orchestrator"):
+            with self.subTest(label=label):
+                activities = [
+                    Activity(
+                        activity_id="a1",
+                        source_id="work",
+                        actor="user",
+                        occurred_at="2026-06-20T10:00:00Z",
+                        activity_type="reviewed",
+                        object_type="doc",
+                        object_label=label,
+                        summary="Public template style HR workflow.",
+                        workflow_hints=(),
+                    )
+                ]
+
+                proposals = generate_proposals(sources, activities)
+
+                self.assertEqual(proposals, [])
+
 
 if __name__ == "__main__":
     unittest.main()

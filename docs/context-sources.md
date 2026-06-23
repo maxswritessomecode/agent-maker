@@ -14,6 +14,8 @@ Agent Maker can use any source already available and approved in the user's assi
 | Tickets | status, blockers, releases | status updates, release notes |
 | GitHub/GitLab | PRs, issues, changelogs | release notes, review summaries |
 | CRM/support | customer context, open issues | account briefings, response drafts |
+| Marketing/content tools | source material, campaigns, drafts, analytics | content repurposing, SEO briefs |
+| Research/news tools | saved links, competitor notes, market notes | research briefings |
 
 ## Source Usefulness Questions
 
@@ -25,3 +27,10 @@ Agent Maker can use any source already available and approved in the user's assi
 - Is the signal dense enough to justify token use?
 - Could it contain sensitive or regulated content?
 
+## Reverse-Engineering Questions
+
+- What repeated artifact does the user keep producing?
+- Which source system contains the earliest signal that work is needed?
+- Which source system contains the strongest evidence for the draft?
+- What does the user always check before responding, meeting, publishing, or reporting?
+- Can the first agent version produce only a draft, checklist, brief, or summary?
