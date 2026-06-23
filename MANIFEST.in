@@ -1,0 +1,13 @@
+include README.md
+include CHANGELOG.md
+include CONTRIBUTING.md
+include PRIVACY.md
+include SECURITY.md
+include ai_agent.md
+recursive-include assets *
+recursive-include docs *
+# Include generated demo outputs as source fixtures for README walkthroughs.
+recursive-include examples *
+recursive-include skills *
+recursive-include .github *
+recursive-exclude * __pycache__ *.py[cod] .DS_Store

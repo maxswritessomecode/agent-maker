@@ -1,0 +1,103 @@
+{
+  "sources": [
+    {
+      "source_id": "outlook",
+      "name": "Outlook Email",
+      "category": "email",
+      "availability": "connected",
+      "approved": true,
+      "read_only": true,
+      "freshness": "recent",
+      "privacy_class": "internal_work",
+      "work_relevance": 0.9,
+      "identity_clarity": 0.85,
+      "structure": 0.78,
+      "signal_density": 0.86,
+      "noise_risk": 0.35,
+      "evidence_quality": {
+        "has_stable_ids": true,
+        "has_timestamps": true,
+        "has_authors": true,
+        "has_links": true
+      }
+    },
+    {
+      "source_id": "calendar_notes",
+      "name": "Calendar + Meeting Notes",
+      "category": "meetings",
+      "availability": "connected",
+      "approved": true,
+      "read_only": true,
+      "freshness": "recent",
+      "privacy_class": "internal_work",
+      "work_relevance": 0.92,
+      "identity_clarity": 0.8,
+      "structure": 0.82,
+      "signal_density": 0.88,
+      "noise_risk": 0.28,
+      "evidence_quality": {
+        "has_stable_ids": true,
+        "has_timestamps": true,
+        "has_authors": true,
+        "has_links": true
+      }
+    },
+    {
+      "source_id": "teams",
+      "name": "Microsoft Teams",
+      "category": "chat",
+      "availability": "connected",
+      "approved": true,
+      "read_only": true,
+      "freshness": "recent",
+      "privacy_class": "internal_work",
+      "work_relevance": 0.84,
+      "identity_clarity": 0.72,
+      "structure": 0.66,
+      "signal_density": 0.78,
+      "noise_risk": 0.48,
+      "evidence_quality": {
+        "has_stable_ids": true,
+        "has_timestamps": true,
+        "has_authors": true,
+        "has_links": true
+      }
+    },
+    {
+      "source_id": "jira",
+      "name": "Jira Project Tickets",
+      "category": "tickets",
+      "availability": "export_only",
+      "approved": true,
+      "read_only": true,
+      "freshness": "recent",
+      "privacy_class": "internal_work",
+      "work_relevance": 0.88,
+      "identity_clarity": 0.78,
+      "structure": 0.88,
+      "signal_density": 0.82,
+      "noise_risk": 0.25,
+      "evidence_quality": {
+        "has_stable_ids": true,
+        "has_timestamps": true,
+        "has_authors": true,
+        "has_links": true
+      }
+    },
+    {
+      "source_id": "hr_drive",
+      "name": "HR Drive",
+      "category": "docs",
+      "availability": "connected",
+      "approved": true,
+      "read_only": true,
+      "freshness": "recent",
+      "privacy_class": "regulated",
+      "work_relevance": 0.8,
+      "identity_clarity": 0.6,
+      "structure": 0.9,
+      "signal_density": 0.7,
+      "noise_risk": 0.2
+    }
+  ]
+}

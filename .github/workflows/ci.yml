@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: ["main"]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Compile
+        run: python -m py_compile src/agent_maker/*.py
+      - name: Unit tests
+        run: PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m unittest discover -s tests -v
+      - name: CLI smoke
+        run: |
+          PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -m agent_maker.cli run \
+            --manifest examples/source_manifest.json \
+            --activities examples/activities.jsonl \
+            --out /tmp/agent-maker-ci \
+            --allow-outside-scripts-output

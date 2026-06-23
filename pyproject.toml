@@ -1,0 +1,24 @@
+[project]
+name = "agent-maker"
+version = "0.1.0"
+description = "Recommend safe AI agent candidates from approved work context"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+keywords = ["ai-agents", "agent-skills", "custom-agents", "workflow-automation", "codex", "claude-code"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Office/Business",
+    "Topic :: Text Processing",
+]
+
+[project.scripts]
+agent-maker = "agent_maker.cli:main"
+
+[build-system]
+requires = ["setuptools>=78.1.1"]
+build-backend = "setuptools.build_meta"

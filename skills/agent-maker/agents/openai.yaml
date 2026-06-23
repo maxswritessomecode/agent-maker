@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Maker"
+  short_description: "Recommend safe agent candidates from approved work context."
+  default_prompt: "Use $agent-maker to review my approved work context from the last 10 days and suggest draft-only agent candidates."
