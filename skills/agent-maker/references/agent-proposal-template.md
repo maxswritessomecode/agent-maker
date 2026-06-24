@@ -12,10 +12,19 @@ Plain-language description of the coworker role.
 Overall opportunity: <1-5>/5
 
 - Frequency:
+  - <specific count or shared cadence>
 - Repeatability:
+  - <shared workflow hints, object types, or recurring titles>
 - Source quality:
+  - <source scores or quality caveats>
 - Risk:
+  - <why this is low/medium/high>
 - Expected first useful output:
+
+## Confidence Breakdown
+- Avg activity confidence:
+- Evidence count weight:
+- Source quality:
 
 ## Evidence
 Use short citations or source references. Avoid raw sensitive content.
@@ -23,6 +32,11 @@ Use short citations or source references. Avoid raw sensitive content.
 | Claim | Evidence | Confidence | Caveat |
 |---|---|---:|---|
 | <claim> | <source locator or brief note> | <low/medium/high> | <missing context> |
+
+For individual evidence notes, include:
+
+- classified_as: <pattern>
+- signals: <workflow_hint/object_type/text_match signals>
 
 ## Allowed Actions
 - Draft

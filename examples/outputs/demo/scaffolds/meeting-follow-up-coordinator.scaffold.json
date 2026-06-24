@@ -12,8 +12,54 @@
     "Frequency: 3/5 based on 4 evidence records in the lookback window.",
     "Repeatability: 5/5 based on recurring work artifacts and workflow hints.",
     "Source quality: 5/5 based on approved, read-only source scores.",
-    "Risk: low; recommended first version stays draft-only and human-reviewed.",
+    "Risk: 5/5 low; recommended first version stays draft-only and human-reviewed.",
     "Expected first useful output: summarize approved meeting notes."
+  ],
+  "scorecard_details": [
+    {
+      "label": "Frequency",
+      "score": 3,
+      "max_score": 5,
+      "summary": "based on 4 evidence records in the lookback window.",
+      "details": [
+        "4 activity record(s) matched this pattern."
+      ]
+    },
+    {
+      "label": "Repeatability",
+      "score": 5,
+      "max_score": 5,
+      "summary": "based on recurring work artifacts and workflow hints.",
+      "details": [
+        "4 of 4 activities share workflow_hint: \"meeting\"",
+        "3 of 4 share object_type: \"meeting\"",
+        "Recurring title: \"customer rollout sync\" appeared 2x"
+      ]
+    },
+    {
+      "label": "Source quality",
+      "score": 5,
+      "max_score": 5,
+      "summary": "based on approved, read-only source scores.",
+      "details": [
+        "outlook: primary (1.00)",
+        "calendar_notes: primary (1.00)"
+      ]
+    },
+    {
+      "label": "Risk",
+      "score": 5,
+      "max_score": 5,
+      "summary": "low; recommended first version stays draft-only and human-reviewed.",
+      "details": [
+        "pattern=\"meeting\" starts draft-only and human-reviewed."
+      ]
+    }
+  ],
+  "confidence_breakdown": [
+    "Avg activity confidence: 0.82 from source metadata.",
+    "Evidence count weight: 0.78 from 4 record(s).",
+    "Source quality: 1.00 average approved-source score."
   ],
   "source_dependencies": {
     "required": [

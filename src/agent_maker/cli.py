@@ -8,7 +8,7 @@ import shutil
 import sys
 
 from .core import load_activities, load_manifest
-from .generator import generate_proposals
+from .generator import generate_proposal_batch
 from .render import write_outputs
 
 
@@ -43,12 +43,13 @@ def build_parser() -> argparse.ArgumentParser:
 def run(args: argparse.Namespace) -> int:
     sources = load_manifest(args.manifest)
     activities = load_activities(args.activities)
-    proposals = generate_proposals(sources, activities, limit=args.limit)
+    proposal_batch = generate_proposal_batch(sources, activities, limit=args.limit)
+    proposals = list(proposal_batch.selected)
     out_dir = resolve_output_dir(args.out)
     validate_output_dir(out_dir, overwrite=args.overwrite, allow_outside=args.allow_outside_scripts_output)
     if args.overwrite:
         clear_managed_outputs(out_dir, allow_unmarked=is_safe_output_dir(out_dir))
-    written = write_outputs(out_dir, sources, proposals)
+    written = write_outputs(out_dir, sources, proposals, proposal_batch.rejected)
     write_run_marker(out_dir)
     print(f"Generated {len(proposals)} proposal(s)")
     for path in written:

@@ -17,6 +17,20 @@
     "Risk: <low|medium|high>; first version should stay draft-only unless explicitly approved.",
     "Expected first useful output: <output>."
   ],
+  "scorecard_details": [
+    {
+      "label": "Frequency",
+      "score": 3,
+      "max_score": 5,
+      "summary": "based on <n> evidence records.",
+      "details": ["<specific count/cadence reason>"]
+    }
+  ],
+  "confidence_breakdown": [
+    "Avg activity confidence: <score> from source metadata.",
+    "Evidence count weight: <score> from <n> record(s).",
+    "Source quality: <score> average approved-source score."
+  ],
   "source_dependencies": {
     "required": ["<approved-source-id>"],
     "optional": []

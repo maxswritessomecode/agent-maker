@@ -6,7 +6,7 @@ import os
 from pathlib import Path
 
 from .core import Source, now_utc_iso, score_source
-from .generator import Proposal
+from .generator import EvidenceNote, Proposal, ScorecardDetail
 
 
 def escape_table_cell(value: object) -> str:
@@ -98,9 +98,10 @@ def render_source_report(sources: list[Source]) -> str:
 
 
 def render_proposal(proposal: Proposal) -> str:
-    evidence = "\n".join(f"- {plain_list_item(note)}" for note in proposal.evidence_notes)
+    evidence = "\n".join(render_evidence_note(note) for note in proposal.evidence_notes)
     sources = ", ".join(inline_code(source_id) for source_id in proposal.source_ids)
-    scorecard = "\n".join(f"- {plain_list_item(item)}" for item in proposal.scorecard)
+    scorecard = render_scorecard(proposal)
+    confidence_breakdown = "\n".join(f"- {plain_list_item(item)}" for item in proposal.confidence_breakdown)
     allowed = "\n".join(f"- {plain_list_item(action)}" for action in proposal.allowed_actions)
     blocked = "\n".join(f"- {plain_list_item(action)}" for action in proposal.blocked_actions)
     confirmations = "\n".join(f"- {plain_list_item(item)}" for item in proposal.required_confirmations)
@@ -126,6 +127,9 @@ The approved work context shows a recurring `{proposal.pattern}` pattern across 
 
 ## Confidence
 {proposal.confidence:.2f}
+
+## Confidence Breakdown
+{confidence_breakdown}
 
 ## Agent Opportunity Scorecard
 Overall opportunity: {proposal.opportunity_score}/5
@@ -163,6 +167,34 @@ Review this proposal, edit the boundaries, then generate or install the target-s
 """
 
 
+def render_scorecard(proposal: Proposal) -> str:
+    if proposal.scorecard_details:
+        lines: list[str] = []
+        for item in proposal.scorecard_details:
+            lines.append(f"- {plain_list_item(f'{item.label}: {item.score}/{item.max_score} {item.summary}')}")
+            lines.extend(f"  - {plain_list_item(detail)}" for detail in item.details)
+        expected = next((line for line in proposal.scorecard if line.startswith("Expected first useful output:")), "")
+        if expected:
+            lines.append(f"- {plain_list_item(expected)}")
+        return "\n".join(lines)
+    return "\n".join(f"- {plain_list_item(item)}" for item in proposal.scorecard)
+
+
+def render_evidence_note(note: EvidenceNote | str) -> str:
+    if isinstance(note, EvidenceNote):
+        signals = ", ".join(note.classification_signals)
+        return (
+            f"- {plain_list_item(note.text)}\n"
+            f"  - classified_as: {plain_list_item(note.classified_as)}\n"
+            f"  - signals: {plain_list_item(signals)}"
+        )
+    return (
+        f"- {plain_list_item(str(note))}\n"
+        "  - classified_as: unknown\n"
+        "  - signals: legacy evidence note"
+    )
+
+
 def scaffold_spec(proposal: Proposal) -> dict[str, object]:
     return {
         "artifact_type": "agent_scaffold_spec",
@@ -175,6 +207,17 @@ def scaffold_spec(proposal: Proposal) -> dict[str, object]:
         "confidence": proposal.confidence,
         "risk_level": proposal.risk_level,
         "scorecard": list(proposal.scorecard),
+        "scorecard_details": [
+            {
+                "label": item.label,
+                "score": item.score,
+                "max_score": item.max_score,
+                "summary": item.summary,
+                "details": list(item.details),
+            }
+            for item in proposal.scorecard_details
+        ],
+        "confidence_breakdown": list(proposal.confidence_breakdown),
         "source_dependencies": {
             "required": list(proposal.source_ids),
             "optional": [],
@@ -213,7 +256,7 @@ def scaffold_spec(proposal: Proposal) -> dict[str, object]:
     }
 
 
-def write_outputs(out_dir: Path, sources: list[Source], proposals: list[Proposal]) -> list[Path]:
+def write_outputs(out_dir: Path, sources: list[Source], proposals: list[Proposal], rejected: list[Proposal] | tuple[Proposal, ...] = ()) -> list[Path]:
     secure_mkdir(out_dir)
     written: list[Path] = []
 
@@ -237,9 +280,36 @@ def write_outputs(out_dir: Path, sources: list[Source], proposals: list[Proposal
 
     index = out_dir / "index.md"
     proposal_links = "\n".join(f"- [{proposal.agent_name}](proposals/{proposal.agent_slug}.md)" for proposal in proposals)
+    rejected_section = render_rejected_candidates(rejected)
     secure_write(
         index,
-        f"# Agent Maker Run\n\nGenerated {len(proposals)} agent proposal(s).\n\n{proposal_links}\n",
+        f"# Agent Maker Run\n\nGenerated {len(proposals)} agent proposal(s).\n\n{proposal_links}\n{rejected_section}",
     )
     written.append(index)
     return written
+
+
+def render_rejected_candidates(rejected: list[Proposal] | tuple[Proposal, ...]) -> str:
+    if not rejected:
+        return ""
+    lines = [
+        "",
+        "## Considered — Did Not Meet Threshold",
+        "",
+        "| Pattern | Evidence Count | Opportunity Score | Why Dropped |",
+        "|---|---:|---:|---|",
+    ]
+    for proposal in rejected:
+        lines.append(
+            "| "
+            + " | ".join(
+                [
+                    escape_table_cell(proposal.agent_name),
+                    str(proposal.evidence_count),
+                    f"{proposal.opportunity_score}/5",
+                    escape_table_cell(proposal.dropped_reason or "lower ranked than selected recommendations"),
+                ]
+            )
+            + " |"
+        )
+    return "\n".join(lines) + "\n"

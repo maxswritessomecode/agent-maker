@@ -49,6 +49,8 @@ class RenderTests(unittest.TestCase):
         self.assertIn("\\!\\[remote\\]", rendered)
         self.assertIn("`source'id`", rendered)
         self.assertIn("## Agent Opportunity Scorecard", rendered)
+        self.assertIn("## Confidence Breakdown", rendered)
+        self.assertIn("classified_as:", rendered)
 
 
 if __name__ == "__main__":

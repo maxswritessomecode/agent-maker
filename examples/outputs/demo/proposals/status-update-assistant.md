@@ -4,7 +4,7 @@ version: 1
 agent_slug: status-update-assistant
 status: draft
 readiness: reviewed_required
-generated_at: 2026-06-23T03:25:43+00:00
+generated_at: 2026-06-24T20:26:57+00:00
 ---
 
 # Agent Proposal: Status Update Assistant
@@ -13,28 +13,52 @@ generated_at: 2026-06-23T03:25:43+00:00
 Collect approved work signals and draft status updates, stakeholder summaries, and weekly reports.
 
 ## Why It Might Help
-The approved work context shows a recurring `status` pattern across 4 evidence records.
+The approved work context shows a recurring `status` pattern across 6 evidence records.
 
 ## Confidence
-0.78
+0.86
+
+## Confidence Breakdown
+- Avg activity confidence: 0.82 from source metadata.
+- Evidence count weight: 0.86 from 6 record\(s\).
+- Source quality: 0.98 average approved-source score.
 
 ## Agent Opportunity Scorecard
-Overall opportunity: 4/5
+Overall opportunity: 5/5
 
-- Frequency: 3/5 based on 4 evidence records in the lookback window.
-- Repeatability: 4/5 based on recurring work artifacts and workflow hints.
+- Frequency: 4/5 based on 6 evidence records in the lookback window.
+  - 6 activity record\(s\) matched this pattern.
+- Repeatability: 5/5 based on recurring work artifacts and workflow hints.
+  - 6 of 6 activities share workflow_hint: &quot;status&quot;
+  - 2 of 6 share object_type: &quot;email&quot;
+  - Recurring title: &quot;weekly launch status&quot; appeared 2x
 - Source quality: 5/5 based on approved, read-only source scores.
-- Risk: low; recommended first version stays draft-only and human-reviewed.
+  - outlook: primary \(1.00\)
+  - teams: primary \(0.93\)
+  - jira: primary \(1.00\)
+- Risk: 5/5 low; recommended first version stays draft-only and human-reviewed.
+  - pattern=&quot;status&quot; starts draft-only and human-reviewed.
 - Expected first useful output: draft status updates.
 
 ## Primary Sources
-`jira`, `teams`
+`outlook`, `jira`, `teams`
 
 ## Evidence Notes
+- 2026-06-13T15:10:00Z: sent email &#x27;Weekly launch status&#x27; - Sent launch status update with progress, blockers, next steps, and owners. \(outlook:msg_1001\)
+  - classified_as: status
+  - signals: workflow_hint=&quot;status&quot;, workflow_hint=&quot;weekly-update&quot;, text_match=&quot;status&quot;
 - 2026-06-14T18:22:00Z: updated ticket &#x27;Launch readiness tracker&#x27; - Updated blocker status and owner notes before weekly stakeholder recap. \(jira:LAUNCH-42\)
+  - classified_as: status
+  - signals: workflow_hint=&quot;status&quot;, workflow_hint=&quot;weekly-update&quot;, text_match=&quot;status&quot;
 - 2026-06-15T16:45:00Z: commented thread &#x27;Launch follow-up&#x27; - Answered questions about blocker owners and next steps after the customer rollout sync. \(teams:thread_204\)
+  - classified_as: status
+  - signals: workflow_hint=&quot;status&quot;, text_match=&quot;status&quot;
 - 2026-06-18T21:10:00Z: reviewed ticket &#x27;Release blocker review&#x27; - Reviewed blocker tickets and grouped remaining risks for stakeholder status update. \(jira:LAUNCH-58\)
+  - classified_as: status
+  - signals: workflow_hint=&quot;status&quot;, text_match=&quot;status&quot;
 - 2026-06-19T13:20:00Z: commented thread &#x27;Weekly update inputs&#x27; - Collected status snippets from stakeholders and asked for missing owners before sending update. \(teams:thread_244\)
+  - classified_as: status
+  - signals: workflow_hint=&quot;status&quot;, workflow_hint=&quot;weekly-update&quot;, text_match=&quot;status&quot;
 
 ## Allowed Actions
 - draft status updates

@@ -4,7 +4,7 @@ version: 1
 agent_slug: meeting-follow-up-coordinator
 status: draft
 readiness: reviewed_required
-generated_at: 2026-06-23T03:25:43+00:00
+generated_at: 2026-06-24T20:26:57+00:00
 ---
 
 # Agent Proposal: Meeting Follow-up Coordinator
@@ -18,13 +18,25 @@ The approved work context shows a recurring `meeting` pattern across 4 evidence 
 ## Confidence
 0.78
 
+## Confidence Breakdown
+- Avg activity confidence: 0.82 from source metadata.
+- Evidence count weight: 0.78 from 4 record\(s\).
+- Source quality: 1.00 average approved-source score.
+
 ## Agent Opportunity Scorecard
 Overall opportunity: 4/5
 
 - Frequency: 3/5 based on 4 evidence records in the lookback window.
+  - 4 activity record\(s\) matched this pattern.
 - Repeatability: 5/5 based on recurring work artifacts and workflow hints.
+  - 4 of 4 activities share workflow_hint: &quot;meeting&quot;
+  - 3 of 4 share object_type: &quot;meeting&quot;
+  - Recurring title: &quot;customer rollout sync&quot; appeared 2x
 - Source quality: 5/5 based on approved, read-only source scores.
-- Risk: low; recommended first version stays draft-only and human-reviewed.
+  - outlook: primary \(1.00\)
+  - calendar_notes: primary \(1.00\)
+- Risk: 5/5 low; recommended first version stays draft-only and human-reviewed.
+  - pattern=&quot;meeting&quot; starts draft-only and human-reviewed.
 - Expected first useful output: summarize approved meeting notes.
 
 ## Primary Sources
@@ -32,9 +44,17 @@ Overall opportunity: 4/5
 
 ## Evidence Notes
 - 2026-06-15T14:00:00Z: met meeting &#x27;Customer rollout sync&#x27; - Meeting notes include open action items, owners, decisions, and follow-up draft language. \(calendar:event_77\)
+  - classified_as: meeting
+  - signals: workflow_hint=&quot;meeting&quot;, text_match=&quot;meeting&quot;, object_type=&quot;meeting&quot;
 - 2026-06-16T12:05:00Z: drafted email &#x27;Partner follow-up draft&#x27; - Drafted a follow-up message summarizing decisions, owners, and dates from meeting notes. \(outlook:draft_884\)
+  - classified_as: meeting
+  - signals: workflow_hint=&quot;meeting&quot;, text_match=&quot;meeting&quot;
 - 2026-06-17T19:30:00Z: met meeting &#x27;Launch risks review&#x27; - Meeting notes record risk decisions, owner commitments, and unresolved questions for next update. \(calendar:event_91\)
+  - classified_as: meeting
+  - signals: workflow_hint=&quot;meeting&quot;, text_match=&quot;meeting&quot;, object_type=&quot;meeting&quot;
 - 2026-06-21T17:00:00Z: met meeting &#x27;Customer rollout sync&#x27; - Recurring meeting notes include action item follow-ups and unresolved questions for next week. \(calendar:event_104\)
+  - classified_as: meeting
+  - signals: workflow_hint=&quot;meeting&quot;, text_match=&quot;meeting&quot;, object_type=&quot;meeting&quot;
 
 ## Allowed Actions
 - summarize approved meeting notes

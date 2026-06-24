@@ -5,18 +5,66 @@
   "agent_slug": "status-update-assistant",
   "agent_name": "Status Update Assistant",
   "mission": "Collect approved work signals and draft status updates, stakeholder summaries, and weekly reports.",
-  "opportunity_score": 4,
-  "confidence": 0.78,
+  "opportunity_score": 5,
+  "confidence": 0.86,
   "risk_level": "low",
   "scorecard": [
-    "Frequency: 3/5 based on 4 evidence records in the lookback window.",
-    "Repeatability: 4/5 based on recurring work artifacts and workflow hints.",
+    "Frequency: 4/5 based on 6 evidence records in the lookback window.",
+    "Repeatability: 5/5 based on recurring work artifacts and workflow hints.",
     "Source quality: 5/5 based on approved, read-only source scores.",
-    "Risk: low; recommended first version stays draft-only and human-reviewed.",
+    "Risk: 5/5 low; recommended first version stays draft-only and human-reviewed.",
     "Expected first useful output: draft status updates."
+  ],
+  "scorecard_details": [
+    {
+      "label": "Frequency",
+      "score": 4,
+      "max_score": 5,
+      "summary": "based on 6 evidence records in the lookback window.",
+      "details": [
+        "6 activity record(s) matched this pattern."
+      ]
+    },
+    {
+      "label": "Repeatability",
+      "score": 5,
+      "max_score": 5,
+      "summary": "based on recurring work artifacts and workflow hints.",
+      "details": [
+        "6 of 6 activities share workflow_hint: \"status\"",
+        "2 of 6 share object_type: \"email\"",
+        "Recurring title: \"weekly launch status\" appeared 2x"
+      ]
+    },
+    {
+      "label": "Source quality",
+      "score": 5,
+      "max_score": 5,
+      "summary": "based on approved, read-only source scores.",
+      "details": [
+        "outlook: primary (1.00)",
+        "teams: primary (0.93)",
+        "jira: primary (1.00)"
+      ]
+    },
+    {
+      "label": "Risk",
+      "score": 5,
+      "max_score": 5,
+      "summary": "low; recommended first version stays draft-only and human-reviewed.",
+      "details": [
+        "pattern=\"status\" starts draft-only and human-reviewed."
+      ]
+    }
+  ],
+  "confidence_breakdown": [
+    "Avg activity confidence: 0.82 from source metadata.",
+    "Evidence count weight: 0.86 from 6 record(s).",
+    "Source quality: 0.98 average approved-source score."
   ],
   "source_dependencies": {
     "required": [
+      "outlook",
       "jira",
       "teams"
     ],

@@ -83,6 +83,79 @@ class CliTests(unittest.TestCase):
             scaffold = json.loads(scaffold_paths[0].read_text(encoding="utf-8"))
             self.assertFalse(scaffold["memory_policy"]["retain_raw_content"])
             self.assertIn("scorecard", scaffold)
+            self.assertIn("confidence_breakdown", scaffold)
+            self.assertIn("scorecard_details", scaffold)
+
+    def test_index_lists_rejected_candidates(self):
+        with TemporaryDirectory() as temp_dir:
+            root = Path(temp_dir)
+            manifest = root / "manifest.json"
+            activities = root / "activities.jsonl"
+            out_dir = root / "out"
+            manifest.write_text(
+                json.dumps(
+                    {
+                        "sources": [
+                            {
+                                "source_id": "work",
+                                "name": "Work",
+                                "category": "mixed",
+                                "availability": "connected",
+                                "approved": True,
+                                "read_only": True,
+                                "work_relevance": 0.9,
+                                "signal_density": 0.9,
+                            }
+                        ]
+                    }
+                ),
+                encoding="utf-8",
+            )
+            records = [
+                ("a1", "met", "meeting", "Launch sync", "Meeting follow-up.", ["meeting"]),
+                ("a2", "sent", "email", "Inbox reply", "Inbox triage.", ["email"]),
+                ("a3", "drafted", "doc", "Weekly status", "Status update.", ["status"]),
+                ("a4", "reviewed", "ticket", "Release note", "Release notes.", ["release"]),
+            ]
+            activities.write_text(
+                "\n".join(
+                    json.dumps(
+                        {
+                            "activity_id": activity_id,
+                            "source_id": "work",
+                            "actor": "user",
+                            "occurred_at": "2026-06-21T13:00:00Z",
+                            "activity_type": activity_type,
+                            "object_type": object_type,
+                            "object_label": label,
+                            "summary": summary,
+                            "workflow_hints": hints,
+                        }
+                    )
+                    for activity_id, activity_type, object_type, label, summary, hints in records
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            with redirect_stdout(io.StringIO()):
+                exit_code = main([
+                    "run",
+                    "--manifest",
+                    str(manifest),
+                    "--activities",
+                    str(activities),
+                    "--limit",
+                    "2",
+                    "--out",
+                    str(out_dir),
+                    "--allow-outside-scripts-output",
+                ])
+
+            self.assertEqual(exit_code, 0)
+            index = (out_dir / "index.md").read_text(encoding="utf-8")
+            self.assertIn("## Considered — Did Not Meet Threshold", index)
+            self.assertIn("| Pattern | Evidence Count | Opportunity Score | Why Dropped |", index)
 
     def test_rejects_output_outside_safe_root_by_default(self):
         with TemporaryDirectory() as temp_dir:

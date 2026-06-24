@@ -45,6 +45,12 @@ class ProposalGenerationTests(unittest.TestCase):
         self.assertIn("calendar", proposals[0].source_ids)
         self.assertEqual(proposals[0].opportunity_score, 3)
         self.assertLessEqual(proposals[0].confidence, 0.62)
+        self.assertTrue(proposals[0].scorecard_details)
+        self.assertIn("workflow_hint", proposals[0].scorecard_details[1].details[0])
+        self.assertTrue(proposals[0].confidence_breakdown)
+        self.assertIn("Avg activity confidence", proposals[0].confidence_breakdown[0])
+        self.assertEqual(proposals[0].evidence_notes[0].classified_as, "meeting")
+        self.assertTrue(proposals[0].evidence_notes[0].classification_signals)
 
     def test_blocks_hr_related_activity(self):
         sources = [
