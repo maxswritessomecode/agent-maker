@@ -4,11 +4,11 @@
 
 Short pitch:
 
-> Agent Maker recommends safe AI agent candidates from approved work context.
+> Agent Maker recommends agents based on the work you already do.
 
 Longer pitch:
 
-> Most agent builders ask users to describe the agent they want. Agent Maker starts earlier: it reviews approved read-only work context, identifies recurring workflows, and drafts safe, reviewable agent proposals before anything is activated.
+> Most agent builders ask users to describe the agent they want. Agent Maker starts earlier: it looks at approved read-only work signals, identifies recurring workflows, and drafts safe, reviewable agent proposals before anything is activated.
 
 ## Keywords
 
@@ -49,7 +49,7 @@ ai-agents, agent-skills, custom-agents, ai-coworkers, codex, claude-code, github
 - Add a short demo issue: "Use this sample metadata to recommend agents."
 - Pin the repo in the GitHub profile after publishing.
 - Submit to relevant skill/agent directories if appropriate.
-- Add GitHub repo description: "Recommend safe AI agent candidates from approved work context."
+- Add GitHub repo description: "Recommend agents based on the work you already do."
 - Add topics from the suggested topic list.
 
 ## Launch Copy
@@ -60,7 +60,7 @@ I built Agent Maker, a skill that helps you figure out which AI agents you shoul
 Most agent builders start with: "Describe the agent you want."
 
 Agent Maker starts earlier:
-1. Look at approved work context
+1. Look at the work you already do
 2. Find repeated tasks and reasoning workflows
 3. Recommend the top 1-3 AI coworkers
 4. Draft safe agent specs with permissions, boundaries, and output folders

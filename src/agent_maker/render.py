@@ -123,7 +123,7 @@ generated_at: {now_utc_iso()}
 {proposal.mission}
 
 ## Why It Might Help
-The approved work context shows a recurring `{proposal.pattern}` pattern across {proposal.evidence_count} evidence records.
+The user's recent work shows a recurring `{proposal.pattern}` pattern across {proposal.evidence_count} evidence records.
 
 ## Confidence
 {proposal.confidence:.2f}

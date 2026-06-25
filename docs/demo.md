@@ -5,7 +5,7 @@ This walkthrough shows the no-Python product loop.
 ## 1. Start With A Bounded Prompt
 
 ```text
-Use $agent-maker to inspect approved work context from the last 10 days. Use email, calendar, meeting notes, Teams or Slack, docs, and tickets only if already approved. Start metadata-first and recommend 1-3 draft-only agent candidates.
+Use $agent-maker to look at the work I did over the last 10 days. Use email, calendar, meeting notes, Teams or Slack, docs, and tickets only if already approved. Start metadata-first and recommend 1-3 draft-only agents that could help.
 ```
 
 ## 2. Source Inventory
@@ -52,4 +52,3 @@ Only after approval:
 ```text
 Generate a scaffold spec for Status Update Assistant. Keep raw content out of memory, require human review, and include eval cases.
 ```
-

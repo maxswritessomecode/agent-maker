@@ -11,7 +11,7 @@ This can use a lot of tokens. I will keep it bounded, inspect metadata first, an
 ## Fast Personal Scan
 
 ```text
-Use $agent-maker to review my approved work context from the last 10 days and suggest agents that could help me do my job.
+Use $agent-maker to look at the work I did over the last 10 days and suggest agents that could help me do my job. Use only approved read-only sources.
 ```
 
 ## Microsoft 365 Work Context

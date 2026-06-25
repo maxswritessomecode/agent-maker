@@ -1,7 +1,7 @@
 [project]
 name = "agent-maker"
 version = "0.1.0"
-description = "Recommend safe AI agent candidates from approved work context"
+description = "Recommend agents based on the work you already do"
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = []

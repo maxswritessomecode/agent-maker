@@ -4,7 +4,7 @@ version: 1
 agent_slug: meeting-follow-up-coordinator
 status: draft
 readiness: reviewed_required
-generated_at: 2026-06-24T20:26:57+00:00
+generated_at: 2026-06-25T12:40:13+00:00
 ---
 
 # Agent Proposal: Meeting Follow-up Coordinator
@@ -13,7 +13,7 @@ generated_at: 2026-06-24T20:26:57+00:00
 Turn approved meeting context into follow-up drafts, open-loop lists, and weekly meeting summaries.
 
 ## Why It Might Help
-The approved work context shows a recurring `meeting` pattern across 4 evidence records.
+The user's recent work shows a recurring `meeting` pattern across 4 evidence records.
 
 ## Confidence
 0.78

@@ -4,7 +4,7 @@ version: 1
 agent_slug: status-update-assistant
 status: draft
 readiness: reviewed_required
-generated_at: 2026-06-24T20:26:57+00:00
+generated_at: 2026-06-25T12:40:13+00:00
 ---
 
 # Agent Proposal: Status Update Assistant
@@ -13,7 +13,7 @@ generated_at: 2026-06-24T20:26:57+00:00
 Collect approved work signals and draft status updates, stakeholder summaries, and weekly reports.
 
 ## Why It Might Help
-The approved work context shows a recurring `status` pattern across 6 evidence records.
+The user's recent work shows a recurring `status` pattern across 6 evidence records.
 
 ## Confidence
 0.86

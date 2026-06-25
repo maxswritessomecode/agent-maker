@@ -6,7 +6,7 @@ Use this checklist when the user has not provided a source manifest.
 
 Ask:
 
-> Which approved work context should I use: email, calendar, meetings, chat, docs, tickets, code, CRM/support, or local exports? Also choose a lookback window: 7, 10, 14, or 30 days.
+> Which approved sources should I use: email, calendar, meetings, chat, docs, tickets, code, CRM/support, or local exports? Also choose a lookback window: 7, 10, 14, or 30 days.
 
 ## Recommended Defaults
 

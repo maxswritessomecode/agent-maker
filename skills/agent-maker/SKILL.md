@@ -1,13 +1,13 @@
 ---
 name: agent-maker
-description: Recommend and draft reusable AI agent candidates from a user's approved work context. Use when the user asks to discover what agents would help them, build agents from recent emails/calendar/chat/docs/meeting notes/tasks, inspect approved connectors or local exports for repetitive or reasoning workflows, generate agent proposals, or create scaffold specs for Codex, Claude, Copilot, Zapier, Gumloop, n8n, or another agent runtime.
+description: Recommend and draft useful AI agents based on the work a user already does. Use when the user asks to discover what agents would help them, build agents from recent emails/calendar/chat/docs/meeting notes/tasks, inspect approved connectors or local exports for repetitive or reasoning workflows, generate agent proposals, or create scaffold specs for Codex, Claude, Copilot, Zapier, Gumloop, n8n, or another agent runtime.
 ---
 
 # Agent Maker
 
 ## Goal
 
-Help non-technical users discover useful draft-only agent candidates from approved work context. Default to a no-Python, conversation-native workflow. Use files, connectors, search tools, or local exports only when they are already available and approved in the current environment.
+Help non-technical users discover useful draft-only agents from the work they already do. Default to a no-Python, conversation-native workflow. Use files, connectors, search tools, or local exports only when they are already available and approved in the current environment.
 
 ## First Response
 

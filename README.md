@@ -1,6 +1,6 @@
-# Agent Maker: Recommend Custom AI Agents From Approved Work Context
+# Agent Maker: Find AI Agents for the Work You Already Do
 
-Agent Maker is an installable Agent Skill for Codex, Claude Code, GitHub Copilot-style custom agents, and other AI assistant workflows. It reviews approved, read-only work context and recommends the 1-3 agent candidates most worth building.
+Agent Maker is an installable Agent Skill for Codex, Claude Code, GitHub Copilot-style custom agents, and other AI assistant workflows. It looks at the work you already do and recommends the 1-3 agents most worth building.
 
 It is not another blank-box agent builder. Agent Maker starts before the build step: it helps users discover what should become an AI assistant, using evidence, boundaries, and draft scaffold specs.
 
@@ -16,9 +16,9 @@ Most agent builders start with:
 
 > Describe the agent you want.
 
-That is hard for people who know AI could help but do not know which workflow to agentize first. Agent Maker starts with:
+That is hard for people who know AI could help but do not know where to start. Agent Maker starts with:
 
-> Look at the recent work context I approve, then tell me which agents are actually worth building.
+> Look at the work I already do, then tell me which agents would actually help.
 
 It produces reviewable recommendations, Markdown proposals, and scaffold specs. Nothing is activated until the user approves it.
 
@@ -43,7 +43,7 @@ Install the agent-maker skill from /path/to/agent-maker/skills/agent-maker.
 3. Run the first discovery prompt.
 
 ```text
-Use $agent-maker to review approved work context from the last 10 days. Start metadata-first, warn me about token use, and recommend the top 1-3 agent candidates.
+Use $agent-maker to look at the work I did over the last 10 days. Use only approved read-only sources, start metadata-first, warn me about token use, and recommend the top 1-3 agents that could help.
 ```
 
 Expected first response:
@@ -117,7 +117,7 @@ Each recommendation is scored before it becomes a proposal:
 - **Risk**: whether the first useful version can stay draft-only
 - **Expected first output**: the first thing the agent should produce for review
 
-This is the core product wedge: Agent Maker recommends what is worth building before you spend time building it.
+This is the core product wedge: Agent Maker helps you choose the right agent before you spend time building it.
 
 ## Supported Context Sources
 

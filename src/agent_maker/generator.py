@@ -96,7 +96,7 @@ ROLE_TEMPLATES = {
     },
     "default": {
         "name": "Work Pattern Assistant",
-        "mission": "Help with recurring knowledge-work patterns found in approved work context.",
+        "mission": "Help with recurring work the user already does.",
         "actions": ["summarize approved context", "draft reusable work artifacts", "track repeated requests", "prepare review notes"],
     },
 }

@@ -25,7 +25,7 @@ def proposal_limit(value: str) -> int:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="agent-maker",
-        description="Generate reviewable agent proposals from approved work context.",
+        description="Recommend agents based on the work someone already does.",
     )
     subcommands = parser.add_subparsers(dest="command", required=True)
 
