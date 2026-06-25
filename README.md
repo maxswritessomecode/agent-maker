@@ -1,4 +1,4 @@
-# Agent Maker: Find AI Agents for the Work You Already Do
+# Agent Maker: Create AI Agents for the Work You Already Do
 
 Agent Maker is an installable Agent Skill for Codex, Claude Code, GitHub Copilot-style custom agents, and other AI assistant workflows. It looks at the work you already do and recommends the 1-3 agents most worth building.
 
